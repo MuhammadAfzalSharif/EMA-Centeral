@@ -1,0 +1,706 @@
+/* ══════════════════════════════════════════════════
+   QDERA RECONCILIATION PAGE — Qdera vs Landing Zone
+   ══════════════════════════════════════════════════ */
+
+.qdera-page {
+    padding: 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+    background: var(--bg-primary);
+    min-height: 100vh;
+    color: var(--text-primary);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ── Filter Panel ── */
+.qdera-filter {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 24px;
+}
+
+.qdera-filter .filter-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+    flex-wrap: wrap;
+}
+
+.qdera-filter .filter-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.qdera-filter .filter-summary {
+    margin-left: auto;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.qdera-filter .filter-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.qdera-filter .filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.qdera-filter .section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.qdera-filter .filter-type-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.qdera-filter .filter-type-btn {
+    padding: 8px 16px;
+    background: var(--icon-bg-blue);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.qdera-filter .filter-type-btn:hover {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+}
+
+.qdera-filter .filter-type-btn.active {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    border-color: transparent;
+    color: #fff;
+}
+
+.qdera-filter .filter-inputs {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.qdera-filter .input-row {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+}
+
+.qdera-filter .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.qdera-filter .input-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.qdera-filter .date-input,
+.qdera-filter .select-input {
+    padding: 10px 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.qdera-filter .date-input:focus,
+.qdera-filter .select-input:focus {
+    outline: none;
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+.qdera-filter .date-input::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(0.8);
+    cursor: pointer;
+}
+
+.qdera-filter .select-wrapper {
+    position: relative;
+}
+
+.qdera-filter .select-input {
+    width: 100%;
+    appearance: none;
+    padding-right: 32px;
+    cursor: pointer;
+}
+
+.qdera-filter .select-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-accent);
+    pointer-events: none;
+}
+
+.qdera-filter .reset-btn {
+    padding: 10px 20px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    color: #ef4444;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.qdera-filter .reset-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+/* ── Stats Grid ── */
+.qdera-page .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.qdera-page .stat-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.qdera-page .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
+}
+
+.qdera-page .stat-card.accent-green { border-left: 3px solid var(--status-success); }
+.qdera-page .stat-card.accent-red   { border-left: 3px solid var(--status-failed); }
+
+.qdera-page .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.qdera-page .stat-icon.blue   { background: var(--icon-bg-blue); color: var(--icon-color-blue); }
+.qdera-page .stat-icon.green  { background: var(--icon-bg-green); color: var(--icon-color-green); }
+.qdera-page .stat-icon.red    { background: var(--icon-bg-red); color: var(--icon-color-red); }
+.qdera-page .stat-icon.orange { background: var(--icon-bg-orange); color: var(--icon-color-orange); }
+.qdera-page .stat-icon.cyan   { background: var(--icon-bg-cyan); color: var(--icon-color-cyan); }
+.qdera-page .stat-icon.purple { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+
+.qdera-page .stat-content h3 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1;
+}
+
+.qdera-page .stat-content p {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 4px 0 0;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+/* ── View Mode Toggle ── */
+.qdera-page .view-mode-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 6px;
+    width: fit-content;
+}
+
+.qdera-page .view-mode-toggle button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.qdera-page .view-mode-toggle button.active {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    color: #fff;
+}
+
+.qdera-page .view-mode-toggle button:hover:not(.active) {
+    background: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+/* ── Client Tiles ── */
+.qdera-page .client-tiles-section {
+    margin-bottom: 28px;
+}
+
+.qdera-page .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+}
+
+.qdera-page .client-tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+}
+
+.qdera-page .client-tile {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.qdera-page .client-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
+}
+
+.qdera-page .client-tile-header {
+    padding: 16px 20px;
+    border-left: 4px solid #f59e0b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.qdera-page .client-tile-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.qdera-page .client-total {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.qdera-page .client-tile-stats {
+    padding: 12px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.qdera-page .client-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--bg-tertiary);
+}
+
+.qdera-page .client-stat .stat-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.qdera-page .client-stat .stat-values {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qdera-page .client-stat .count {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.qdera-page .client-stat .percentage {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.qdera-page .client-stat.success .stat-label { color: var(--status-success); }
+.qdera-page .client-stat.success .percentage { background: var(--icon-bg-green); color: var(--status-success); }
+.qdera-page .client-stat.failed .stat-label { color: var(--status-failed); }
+.qdera-page .client-stat.failed .percentage { background: var(--icon-bg-red); color: var(--status-failed); }
+.qdera-page .client-stat.info .stat-label { color: var(--icon-color-cyan); }
+.qdera-page .client-stat.info .count { color: var(--icon-color-cyan); }
+
+/* ── Charts ── */
+.qdera-page .charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.qdera-page .chart-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px;
+}
+
+.qdera-page .chart-card-wide {
+    grid-column: 1 / -1;
+}
+
+.qdera-page .chart-header h3 {
+    color: var(--text-primary);
+    font-size: 16px;
+    margin: 0;
+}
+
+.qdera-page .chart-header p {
+    color: var(--text-accent);
+    font-size: 13px;
+    margin: 4px 0 16px;
+}
+
+/* ── Detail Section ── */
+.qdera-page .detail-section {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.qdera-page .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.qdera-page .section-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.qdera-page .section-header .badge {
+    background: var(--border-color);
+    color: var(--text-muted);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: auto;
+}
+
+/* ── Reconciliation Status Tags ── */
+.qdera-page .recon-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.qdera-page .recon-status.matched {
+    color: var(--status-success);
+    background: var(--icon-bg-green);
+}
+
+.qdera-page .recon-status.mismatched {
+    color: var(--status-failed);
+    background: var(--icon-bg-red);
+}
+
+/* ── Reconciliation Tree ── */
+.qdera-page .recon-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-x: hidden;
+}
+
+.qdera-page .tree-group {
+    margin-bottom: 2px;
+}
+
+.qdera-page .tree-group-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    user-select: none;
+}
+
+.qdera-page .tree-group-header:hover {
+    background: var(--bg-accent);
+}
+
+.qdera-page .tree-group-header.expanded {
+    border-color: #f59e0b;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.qdera-page .tree-toggle {
+    color: var(--text-accent);
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.qdera-page .tree-group-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+.qdera-page .tree-client-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    flex-shrink: 0;
+}
+
+.qdera-page .tree-group-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.qdera-page .tree-run-count {
+    color: var(--text-muted);
+    font-size: 12px;
+    background: var(--border-color);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.qdera-page .tree-status-pills {
+    display: flex;
+    gap: 6px;
+}
+
+.qdera-page .pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.qdera-page .pill.success { background: var(--icon-bg-green); color: var(--status-success); }
+.qdera-page .pill.failed  { background: var(--icon-bg-red); color: var(--status-failed); }
+
+.qdera-page .tree-runs {
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+}
+
+.qdera-page .tree-run-details {
+    padding: 12px 14px 14px;
+    background: var(--bg-accent);
+}
+
+.qdera-page .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 60px 0;
+    color: var(--text-accent);
+}
+
+/* ── Tooltip ── */
+.qdera-page .custom-tooltip {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.qdera-page .tooltip-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0 0 4px 0;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.qdera-page .tooltip-value {
+    font-size: 16px;
+    color: var(--text-primary);
+    margin: 0;
+    font-weight: 600;
+}
+
+/* ── Loading / Error ── */
+.qdera-page .loading-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+    color: var(--text-muted);
+    gap: 16px;
+}
+
+.qdera-page .loading-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+}
+
+.qdera-page .loading-bar {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--border-color);
+    border-top: 3px solid #f59e0b;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+.qdera-page .loading-bar-text {
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.qdera-page .error-banner {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.qdera-page .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-color);
+    border-top: 3px solid #f59e0b;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .qdera-page {
+        padding: 12px;
+    }
+
+    .qdera-page .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .qdera-page .charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .qdera-filter .filter-inputs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .qdera-filter .input-row {
+        flex-direction: column;
+    }
+
+    .qdera-filter .filter-type-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .qdera-page .client-tiles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .qdera-page .tree-run-details {
+        padding-left: 14px;
+    }
+}
+
+/* Recharts legend text color */
+.qdera-page .recharts-legend-item-text {
+    color: var(--text-secondary) !important;
+}

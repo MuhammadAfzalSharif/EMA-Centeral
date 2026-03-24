@@ -1,0 +1,264 @@
+/* ══════════════════════════════════════════════════
+   DATE FILTER — Theme Variables
+   ══════════════════════════════════════════════════ */
+
+.date-filter {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 24px;
+}
+
+.filter-action-button {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filter-action-button .new-jobs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    background: var(--bg-primary);
+    border: 1px solid var(--status-success);
+    border-radius: 8px;
+    color: var(--status-success);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-action-button .new-jobs-btn:hover:not(:disabled) {
+    background: rgba(16, 185, 129, 0.1);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+}
+
+.filter-action-button .new-jobs-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.filter-action-button .new-jobs-btn:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+.filter-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+    flex-wrap: wrap;
+}
+
+.filter-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.filter-summary {
+    margin-left: auto;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.filter-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.filter-type-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-type-btn {
+    padding: 8px 16px;
+    background: var(--icon-bg-blue);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-type-btn:hover {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+}
+
+.filter-type-btn.active {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border-color: transparent;
+    color: #fff;
+}
+
+.filter-inputs {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.input-row {
+    display: flex;
+    gap: 12px;
+    flex: 1;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.input-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.date-input,
+.select-input {
+    padding: 10px 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.date-input:focus,
+.select-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Style date input calendar picker icons for theme awareness */
+.date-input::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(0.8);
+    cursor: pointer;
+}
+
+.date-input::-webkit-calendar-picker-indicator:hover {
+    filter: invert(1) brightness(1);
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-input {
+    width: 100%;
+    appearance: none;
+    padding-right: 32px;
+    cursor: pointer;
+}
+
+.select-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-accent);
+    pointer-events: none;
+}
+
+.reset-btn {
+    padding: 10px 20px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    color: #ef4444;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.reset-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .filter-inputs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .input-row {
+        flex-direction: column;
+    }
+
+    .filter-type-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.submit-btn {
+    padding: 12px 32px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 12px;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Calendar icon styling for theme awareness */
+.section-label svg {
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.filter-header svg {
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
